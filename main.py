@@ -28,8 +28,10 @@ class PreprocessingPipeline:
 
             processing = Preprocessing(subjectID)
             processing.remove_first_two_volumes()
-            # processing.slicetime_correction()
-            # processing.motion_correction()
+            processing.slicetime_correction()
+            processing.motion_correction()
+            processing.intensity_normalization()
+            processing.temporal_filtering()
 
             break
 
