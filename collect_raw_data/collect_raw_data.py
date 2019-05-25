@@ -15,8 +15,12 @@ def init_fmri_subject_dir(subjectID, path_fmri, path_HCP):
     ## Copy QSM data to fmri subject directory
     strippedID = subjectID[2:]
     path_QSM = os.path.join("/shared/studies/nonregulated/qsm_repo/data/", strippedID + "/recon/")
-    for qsm_file in ["magnitude_combined.nii.gz", "phase_combined.nii.gz"]:
-        copyfile(os.path.join(path_QSM, qsm_file), os.path.join(path_fmri, strippedID + qsm_file))
+    if os.path.isdir(path_QSM):
+        for qsm_file in ["magnitude_combined.nii.gz", "phase_combined.nii.gz"]:
+            copyfile(os.path.join(path_QSM, qsm_file), os.path.join(path_fmri, subjectID + "/" + qsm_file))
+
+        else:
+            print("{}: Not in QSM repo".format(subjectID))
 
 
 def download_raw_fmri_data(subjectID, path_fmri):
