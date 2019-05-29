@@ -7,6 +7,8 @@ from threading import Thread
 from collect_raw_data.collect_raw_data import init_fmri_subject_dir, download_raw_fmri_data
 from preprocessing.PreMelodicProcessing import Preprocessing
 from preprocessing.StructuralProcessing import StructuralProcessing
+from preprocessing.Melodic import Melodic
+from preprocessing.PostMelodicProcessing import PostMelodic
 
 
 class PreprocessingPipeline:
@@ -23,7 +25,8 @@ class PreprocessingPipeline:
             else:
                 continue
 
-            if verify_necessary_files == False:
+            if starting_files_present(subjectID) == False:
+                print("Skipping {}, not all files present".format(subjectID))
                 continue
 
             print(subjectID)
@@ -33,39 +36,66 @@ class PreprocessingPipeline:
 
             processing = Preprocessing(subjectID)
             structproc = StructuralProcessing(processing)
+            melodic = Melodic(processing)
+            postmel = PostMelodic(processing)
 
             try:
-                processing.remove_first_two_volumes()
-                processing.slicetime_correction()
-                processing.motion_correction()
-                processing.intensity_normalization()
-                processing.temporal_mean()
-                processing.temporal_filtering()
-                processing.brain_extraction()
-                processing.epi_distortion_correction()
-                processing.zero_center_fieldmap()
-                processing.fugue()
+                # print("Removing first two volumes")
+                #processing.remove_first_two_volumes()
+                # print("Slicetime correction")
+                #processing.slicetime_correction()
+                # print("Motion correction")
+                #processing.motion_correction()
+                # print("Intensity normalization")
+                #processing.intensity_normalization()
+                # print("Temporal mean")
+                #processing.temporal_mean()
+                # print("Temporal filtering")
+                #processing.temporal_filtering()
+                # print("Brain extraction")
+                #processing.brain_extraction()
+                # print("Epi distortion correction")
+                #processing.epi_distortion_correction()
+                # print("Zero centering fieldmap")
+                #processing.zero_center_fieldmap()
+
+                # print("Generating aparc+aseg")
+                structproc.generate_aparcaseg()
+                # print("Downsizing T1")
+                structproc.downsize_T1()
+
+                # print("Fugue")
+                #processing.fugue()
+                # print("ANTs")
                 processing.ANTs_registration()
+                # print("Motion outlier detection")
                 processing.motion_outlier_detection()
+                # print("Spatial smoothing")
                 processing.spatial_smoothing()
 
-                structproc.generate_aparcaseg()
-                structproc.downsize_T1()
+                melodic.init_melodic_directory()
+                melodic.ICA()
+
+                # postmel.denoise()
 
             except:
                 print("{}: Something went wrong".format(subjectID))
                 pass
 
-            #break
+            # break
 
 
-def verify_necessary_files(subjectID):
+def starting_files_present(subjectID):
 
-    functional_data = "/shared/studies/nonregulated/connectome/fmri/subjects/" + subjectID + "/rawfunc.nii.gz"
-    structural_data = "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/T1w_acpc_dc_restore_brain.nii.gz"
-    QSM_data = "/shared/studies/nonregulated/qsm_repo/data/" + subjectID.replace("EX","")
+    path_conntectome = "/shared/studies/nonregulated/connectome/"
+    functional_data = path_conntectome + "fmri/subjects/" + subjectID + "/rawfunc.nii.gz"
+    structural_data = path_conntectome + "Subjects/" + subjectID + "/T1w/T1w_acpc_dc_restore_brain.nii.gz"
+    QSM_path = "/shared/studies/nonregulated/qsm_repo/data/" + subjectID.replace("EX","") + "/recon/"
 
-    if not os.path.exists(functional_data) or not os.path.exists(structural_data) or not os.path.isdir(QSM_data):
+    if (not os.path.exists(functional_data)
+            or not os.path.exists(structural_data)
+            or not os.path.exists(QSM_path + "magnitude_combined.nii.gz")
+            or not os.path.exists(QSM_path + "phase_combined.nii.gz")):
         return False
     else:
         return True
@@ -90,10 +120,11 @@ if __name__ == "__main__":
     with open(sys.argv[1]) as infile:
         full_subject_list = infile.read().splitlines()
 
+    # preproc = PreprocessingPipeline(full_subject_list)
+    # preproc.pipeline()
     num_threads = int(sys.argv[2])
 
     for thread in create_threads(full_subject_list, num_threads):
-        preproc = PreprocessingPipeline(thread)
-        thread_process = Thread(target = preproc.pipeline)
-        thread_process.start()
-    
+       preproc = PreprocessingPipeline(thread)
+       thread_process = Thread(target = preproc.pipeline)
+       thread_process.start()

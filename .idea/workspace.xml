@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6eeaa76-0a9e-48a6-a1ea-973ecacf9708" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/preprocessing/Melodic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collect_raw_data/.collect_raw_data.py.swp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/collect_raw_data/collect_raw_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/collect_raw_data/collect_raw_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connectome_analyses/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/connectome_analyses/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/junk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/Preprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/StructuralProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/StructuralProcessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/Melodic.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/Melodic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,32 +21,53 @@
     <splitter split-orientation="horizontal" split-proportion="0.5752754">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="377">
-                  <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+                <state relative-caret-position="155">
+                  <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="284">
+                  <caret line="237" column="13" lean-forward="true" selection-start-line="237" selection-start-column="13" selection-end-line="237" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/preprocessing/StructuralProcessing.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="675">
+                  <caret line="45" column="68" lean-forward="true" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
                   <folding>
-                    <element signature="e#20#30#0" expanded="true" />
+                    <element signature="e#0#9#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/preprocessing/Melodic.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="692">
-                  <caret line="277" column="9" lean-forward="true" selection-start-line="277" selection-start-column="9" selection-end-line="277" selection-end-column="9" />
+                <state relative-caret-position="210">
+                  <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/collect_raw_data/collect_raw_data.py">
+            <entry file="file://$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" selection-start-line="16" selection-end-line="16" />
+                <state relative-caret-position="225">
+                  <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -59,15 +78,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
-                  <caret line="31" selection-start-line="31" selection-end-line="31" />
-                  <folding>
-                    <element signature="e#20#30#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="975">
+                  <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
                 </state>
               </provider>
             </entry>
@@ -87,7 +103,14 @@
     <findStrings>
       <find>os.mkdir</find>
       <find>wa</find>
+      <find>mean_filtered_func_data_bet</find>
+      <find>$</find>
+      <find>path_sub</find>
     </findStrings>
+    <replaceStrings>
+      <replace>self.</replace>
+      <replace>path_fmri</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -105,17 +128,17 @@
         <option value="$PROJECT_DIR$/connectome_analyses/__init__.py" />
         <option value="$PROJECT_DIR$/preprocessing/Preprocessing.py" />
         <option value="$PROJECT_DIR$/preprocessing/Melodic.py" />
+        <option value="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" />
         <option value="$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="779" />
-    <option name="y" value="506" />
-    <option name="width" value="1920" />
-    <option name="height" value="1032" />
+    <option name="x" value="1050" />
+    <option name="y" value="480" />
+    <option name="width" value="1680" />
+    <option name="height" value="1018" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -211,8 +234,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1050" y="480" width="1680" height="1018" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15973072" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.15931372" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -225,7 +249,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.33710408" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32976446" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32918552" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -254,16 +278,6 @@
     <entry file="file://$PROJECT_DIR$/junk">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/StructuralProcessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/connectome_analyses/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -273,8 +287,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/collect_raw_data/collect_raw_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="210">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/StructuralProcessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="68" lean-forward="true" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -283,18 +307,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/Melodic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="237" column="13" lean-forward="true" selection-start-line="237" selection-start-column="13" selection-end-line="237" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="225">
+          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -303,18 +334,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
-          <folding>
-            <element signature="e#20#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="277" column="9" lean-forward="true" selection-start-line="277" selection-start-column="9" selection-end-line="277" selection-end-column="9" />
+        <state relative-caret-position="155">
+          <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
         </state>
       </provider>
     </entry>

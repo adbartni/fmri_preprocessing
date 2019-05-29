@@ -34,8 +34,8 @@ class Preprocessing:
             fslDir + "mcflirt -in " + self.path_fmri + "/prefiltered_func_data_st.nii.gz" +
             " -out " + self.path_fmri + "/mc/prefiltered_func_data_mcf -plots -spline_final -mats -rmsrel -rmsabs"
         )
-        copyfile(os.path.join(self.path_fmri, "mc/prefiltered_func_data_mcf.nii.gz"),
-                 os.path.join(self.path_fmri, "prefiltered_func_data_mcf.nii.gz"))
+        copyfile(self.path_fmri + "mc/prefiltered_func_data_mcf.nii.gz",
+                 self.path_fmri + "prefiltered_func_data_mcf.nii.gz")
 
 
     def intensity_normalization(self):
@@ -120,7 +120,7 @@ class Preprocessing:
 
         os.system(
             fslDir + "fslmaths " + self.path_fmri + "/dc/culowphase.nii.gz -add " + str(absolute_min) + " -mas " +
-            self.path_fmri + "/dc/mask_magnitude.nii.gz " + self.path_fmri + "/dc/phasemap0"
+            self.path_fmri + "/dc/mag_brain.nii.gz " + self.path_fmri + "/dc/phasemap0"
         )
         os.system(
             fslDir + "fslmaths " + self.path_fmri + "/dc/phasemap0.nii.gz -mul 1000 -div 22 " +
@@ -153,7 +153,7 @@ class Preprocessing:
 
     def zero_center_fieldmap(self):
         os.system(
-            fslDir + "fslmaths "  + self.path_fmri + "/dc/fieldmap_rads.nii.gz -kernel 3D -ero -kernel 2D -ero -ero " +
+            fslDir + "fslmaths " + self.path_fmri + "/dc/fieldmap_rads_reg.nii.gz -kernel 3D -ero -kernel 2D -ero -ero " +
             self.path_fmri + "/dc/fieldmap_rads_ero.nii.gz"
             )
         os.system(
@@ -161,10 +161,10 @@ class Preprocessing:
             self.path_fmri + "/dc/fieldmap_rads_dil.nii.gz"
             )
         os.system(
-            fslDir + "fslmaths " + self.path_fmri + "/dc/fieldmap_rads.nii.gz -bin -mul -1 -add 1 -mul " +
-            self.path_fmri + "/dc/fieldmap_rads_dil.nii.gz -add "  + self.path_fmri + "/dc/fieldmap_rads.nii.gz " +
+            fslDir + "fslmaths " + self.path_fmri + "/dc/fieldmap_rads_reg.nii.gz -bin -mul -1 -add 1 -mul " +
+            self.path_fmri + "/dc/fieldmap_rads_dil.nii.gz -add "  + self.path_fmri + "/dc/fieldmap_rads_reg.nii.gz " +
             self.path_fmri + "/dc/fieldmap_rads_dil_inside.nii.gz"
-        ) 
+        )
 
         os.system(
             fslDir + "fslreorient2std " + self.path_fmri + "/dc/fieldmap_rads_dil_inside.nii.gz " +
@@ -203,7 +203,7 @@ class Preprocessing:
         )
 
         os.system(
-            fslDir + "fslmaths " + self.path_fmri + "/dc/fieldmap2epi.nii.gz -sub " + str(weighted_avg)  +
+            fslDir + "fslmaths " + self.path_fmri + "/dc/fieldmap2epi.nii.gz -sub " + str(weighted_avg) +
             " " + self.path_fmri + "/dc/fieldmap2epi_mean_centered.nii.gz"
         )
         os.system(
@@ -224,17 +224,18 @@ class Preprocessing:
         if not os.path.isdir(os.path.join(self.path_fmri, "ants")):
             os.mkdir(os.path.join(self.path_fmri, "ants"))
 
-        os.system(
-           self.ants_path + "antsRegistrationSyN.sh -d 3 -f " + 
-           self.path_HCP + "/T1w_acpc_dc_restore_brain_2.00.nii.gz -m " +
-           self.path_fmri + "/dc/unwarped.nii.gz -o " + self.path_fmri + "/ants/epi2brain -n 32 -t s"
-        )
-        os.system(
-            self.ants_path + "antsApplyTransforms -d 3 -i " + self.path_fmri + "/dc/unwarped.nii.gz -e 3 -r " +
-            self.path_HCP + "/T1w_acpc_dc_restore_brain_2.00.nii.gz -o " +
-            self.path_fmri + "/ants/epi2braints.nii.gz -n NearestNeighbor -t " +
-            self.path_fmri + "/ants/epi2brain1Warp.nii.gz -t " + self.path_fmri + "/ants/epi2brain0GenericAffine.mat"
-        )
+        if not os.path.exists(self.path_fmri + "/ants/epi2braints.nii.gz"):
+            os.system(
+               self.ants_path + "antsRegistrationSyN.sh -d 3 -f " +
+               self.path_HCP + "/T1w_acpc_dc_restore_brain_2.00.nii.gz -m " +
+               self.path_fmri + "/dc/mean_filtered_func_data_bet.nii.gz -o " + self.path_fmri + "/ants/epi2brain -n 32 -t s"
+            )
+            os.system(
+                self.ants_path + "antsApplyTransforms -d 3 -i " + self.path_fmri + "/filtered_func_data_bet.nii.gz -e 3 -r " +
+                self.path_HCP + "/T1w_acpc_dc_restore_brain_2.00.nii.gz -o " +
+                self.path_fmri + "/ants/epi2braints.nii.gz -n NearestNeighbor -t " +
+                self.path_fmri + "/ants/epi2brain1Warp.nii.gz -t " + self.path_fmri + "/ants/epi2brain0GenericAffine.mat"
+            )
 
 
     def motion_outlier_detection(self):
@@ -255,7 +256,7 @@ class Preprocessing:
             self.path_fmri + "/mean_epi_in_struct_mask.nii.gz -p 50",
             shell = True
         )
-        thr3 = 0.75 * float(func2struc_p50[0])
+        thr3 = 0.75 * float(func2struc_p50.split(" ")[0])
 
         os.system(
             fslDir + "fslmaths " + self.path_fmri + "/mean_epi_in_struct_mask.nii.gz -dilF " +
@@ -272,8 +273,8 @@ class Preprocessing:
 
         os.system(
             fslDir + "susan " + self.path_fmri + "/filtered_func_data_thr.nii.gz " + str(thr3) +
-            " 1.698513800424628 3 1 1 " + self.path_fmri + "/mean_func.nii.gz " + str(thr3) +
-            " " + self.path_fmri + "/filtered_func_data_smo.nii.gz"
+            " 1.698513800424628 3 1 1 " + self.path_fmri + "/mean_func.nii.gz " + str(thr3) + " " +
+            self.path_fmri + "/filtered_func_data_smo.nii.gz"
         )
         os.system(
             fslDir + "fslmaths " + self.path_fmri + "/filtered_func_data_smo.nii.gz -mas " +
