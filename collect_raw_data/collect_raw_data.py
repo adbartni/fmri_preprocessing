@@ -19,8 +19,8 @@ def init_fmri_subject_dir(subjectID, path_fmri, path_HCP):
         for qsm_file in ["magnitude_combined.nii.gz", "phase_combined.nii.gz"]:
             copyfile(os.path.join(path_QSM, qsm_file), os.path.join(path_fmri, subjectID + "/" + qsm_file))
 
-    else:
-        print("{}: Not in QSM repo or files have already been copied".format(subjectID))
+    elif not os.path.exists(path_QSM + "/phase_combined.nii.gz"):
+        print("{}: Missing QSM".format(subjectID))
 
 
 def download_raw_fmri_data(subjectID, path_fmri):

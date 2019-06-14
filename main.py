@@ -9,14 +9,34 @@ from preprocessing.PreMelodicProcessing import Preprocessing
 from preprocessing.StructuralProcessing import StructuralProcessing
 from preprocessing.Melodic import Melodic
 from preprocessing.PostMelodicProcessing import PostMelodic
+#from connectome_analyses.FunctionalConnectivity import FunctionalConnectome
 
 
 class PreprocessingPipeline:
+    """ Wraps a subject in the entire preprocessing pipeline
+        
+        Allows for parellelization and easy management of which
+        stages of preprocessing are used
+    """
 
-    def __init__(self, subject_list):
+    def __init__(self, subject_list, phase):
         self.subject_list = subject_list
+        self.phase = phase.lower()
 
     def pipeline(self):
+        """ Monolithic method that contains the entire preprocessing pipeline
+
+            Stages of preprocessing are specified via command line args:
+                Premelodic - initial preprocessing steps on time series,
+                             including volume removal, slicetime correction,
+                             motion correction, distortion correction,
+                             registration into T1 space, etc.
+                Melodic - independent component analysis across time series;
+                          as of now, hand denoising MUST be done after this step
+                Postmelodic - Removal of noise components, spatial smoothing,
+                          masking of confounds, and generation of 
+                          functional connectome for each subject
+        """
 
         for subjectID in self.subject_list:
             if re.search('[0-9]', subjectID):
@@ -28,64 +48,110 @@ class PreprocessingPipeline:
             if starting_files_present(subjectID) == False:
                 print("Skipping {}, not all files present".format(subjectID))
                 continue
-
-            print(subjectID)
-            init_fmri_subject_dir(subjectID,
-                    "/shared/studies/nonregulated/connectome/fmri/subjects/",
-                    "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/")
-
-            processing = Preprocessing(subjectID)
-            structproc = StructuralProcessing(processing)
-            melodic = Melodic(processing)
-            postmel = PostMelodic(processing)
+            else:
+                print(subjectID)
 
             try:
-                # print("Removing first two volumes")
-                #processing.remove_first_two_volumes()
-                # print("Slicetime correction")
-                #processing.slicetime_correction()
-                # print("Motion correction")
-                #processing.motion_correction()
-                # print("Intensity normalization")
-                #processing.intensity_normalization()
-                # print("Temporal mean")
-                #processing.temporal_mean()
-                # print("Temporal filtering")
-                #processing.temporal_filtering()
-                # print("Brain extraction")
-                #processing.brain_extraction()
-                # print("Epi distortion correction")
-                #processing.epi_distortion_correction()
-                # print("Zero centering fieldmap")
-                #processing.zero_center_fieldmap()
+                if self.phase == "melodic":
+                    processing = Preprocessing(subjectID)
+                    melodic = Melodic(processing)
 
-                # print("Generating aparc+aseg")
-                structproc.generate_aparcaseg()
-                # print("Downsizing T1")
-                structproc.downsize_T1()
+                    melodic.init_melodic_directory()
+                    melodic.ICA()
 
-                # print("Fugue")
-                #processing.fugue()
-                # print("ANTs")
-                processing.ANTs_registration()
-                # print("Motion outlier detection")
-                processing.motion_outlier_detection()
-                # print("Spatial smoothing")
-                processing.spatial_smoothing()
+                elif self.phase == "postmelodic":
+                    processing = Preprocessing(subjectID)
+                    postmel = PostMelodic(processing)
+                    structproc = StructuralProcessing(processing)
+                    #fcon = FunctionalConnectome(subjectID)
 
-                melodic.init_melodic_directory()
-                melodic.ICA()
+                    postmel.denoise()
+                    #structproc.gm_mask()
+                    #structproc.csf_mask()
+                    #structproc.wm_mask()
+                    structproc.binarize_masks()
+                    postmel.mask_mean_time_series()
+                    postmel.create_all_confounds()
+                    #fcon.create_functional_connectivity_matrix()
 
-                # postmel.denoise()
+                elif self.phase == "premelodic":
+                    init_fmri_subject_dir(subjectID,
+                                          "/shared/studies/nonregulated/connectome/fmri/subjects/",
+                                          "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/")
+
+                    processing = Preprocessing(subjectID)
+                    structproc = StructuralProcessing(processing)
+
+                    processing.remove_first_two_volumes()
+                    processing.slicetime_correction()
+                    processing.motion_correction()
+                    processing.intensity_normalization()
+                    processing.temporal_mean()
+                    processing.temporal_filtering()
+                    processing.brain_extraction()
+                    processing.epi_distortion_correction()
+                    processing.zero_center_fieldmap()
+
+                    structproc.generate_aparcaseg()
+                    structproc.downsize_T1()
+
+                    processing.ANTs_registration()
+                    processing.motion_outlier_detection()
+                    processing.spatial_smoothing()
+
+                elif self.phase == "all":
+                    # init_fmri_subject_dir(subjectID,
+                    #                       "/shared/studies/nonregulated/connectome/fmri/subjects/",
+                    #                       "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/")
+
+                    processing = Preprocessing(subjectID)
+                    structproc = StructuralProcessing(processing)
+                    # melodic = Melodic(processing)
+                    postmel = PostMelodic(processing)
+
+                    # processing.remove_first_two_volumes()
+                    # processing.slicetime_correction()
+                    # processing.motion_correction()
+                    # processing.intensity_normalization()
+                    # processing.temporal_mean()
+                    # processing.temporal_filtering()
+                    # processing.brain_extraction()
+                    # processing.epi_distortion_correction()
+                    # processing.zero_center_fieldmap()
+
+                    # structproc.generate_aparcaseg()
+                    # structproc.downsize_T1()
+                    #
+                    # processing.ANTs_registration()
+                    # processing.motion_outlier_detection()
+                    # processing.spatial_smoothing()
+                    #
+                    # melodic.init_melodic_directory()
+                    # melodic.ICA()
+                    # postmel.denoise()
+
+                    structproc.gm_mask()
+                    structproc.csf_mask()
+                    structproc.wm_mask()
+                    structproc.binarize_masks()
+
+                    postmel.mask_mean_time_series()
+                    postmel.create_all_confounds()
 
             except:
                 print("{}: Something went wrong".format(subjectID))
                 pass
 
-            # break
+            #break
 
 
 def starting_files_present(subjectID):
+    """ Verify that each subject has:
+            Fully processed strucutral image (T1 freesurfer output)
+            Unprocessed raw functional image from bluesky
+            QSM fieldmap images (magnitude and phase images)
+        before beginning processing
+    """
 
     path_conntectome = "/shared/studies/nonregulated/connectome/"
     functional_data = path_conntectome + "fmri/subjects/" + subjectID + "/rawfunc.nii.gz"
@@ -102,6 +168,8 @@ def starting_files_present(subjectID):
 
 
 def check_prefix(subject):
+    """ Append 'EX' to subject's ID if necessary
+    """
 
     if "EX" not in subject:
         subject = "EX" + subject
@@ -110,6 +178,9 @@ def check_prefix(subject):
 
 
 def create_threads(full_subject_list, num_threads):
+    """ Split the input subject list into a specified number of sublists
+        to parellelize the preprocessing pipeline up to 8 times
+    """
 
     for i in range(0, len(full_subject_list), num_threads):
         yield(full_subject_list[i:i + num_threads])
@@ -117,14 +188,21 @@ def create_threads(full_subject_list, num_threads):
 
 if __name__ == "__main__":
 
+    # Read in subject list from command line argument
     with open(sys.argv[1]) as infile:
         full_subject_list = infile.read().splitlines()
 
-    # preproc = PreprocessingPipeline(full_subject_list)
+    # phase = sys.argv[2]
+    # print(phase)
+    # preproc = PreprocessingPipeline(full_subject_list, phase)
     # preproc.pipeline()
+
+    # Split up list into specified number of sublists and run in parellel
     num_threads = int(sys.argv[2])
+    phase = sys.argv[3]
 
     for thread in create_threads(full_subject_list, num_threads):
-       preproc = PreprocessingPipeline(thread)
+       preproc = PreprocessingPipeline(thread, phase)
        thread_process = Thread(target = preproc.pipeline)
        thread_process.start()
+

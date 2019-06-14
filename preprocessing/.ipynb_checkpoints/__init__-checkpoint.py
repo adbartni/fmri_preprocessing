@@ -1,0 +1,1 @@
+fslDir = "/usr/share/fsl/5.0/bin/"

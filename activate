@@ -1,0 +1,3 @@
+#!/bin/bash
+
+source /shared/studies/nonregulated/connectome/venv/bin/activate

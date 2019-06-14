@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6eeaa76-0a9e-48a6-a1ea-973ecacf9708" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/fmri_preprocessing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fmri_preprocessing.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collect_raw_data/.collect_raw_data.py.swp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/collect_raw_data/collect_raw_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/collect_raw_data/collect_raw_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/junk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/Melodic.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/Melodic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/.PreMelodicProcessing.py.swp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/.Preprocessing.py.swp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/StructuralProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/StructuralProcessing.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,14 +18,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5752754">
+    <splitter split-orientation="horizontal" split-proportion="0.5602988">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="155">
-                  <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
+                <state relative-caret-position="480">
+                  <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
                 </state>
               </provider>
             </entry>
@@ -33,17 +33,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="284">
-                  <caret line="237" column="13" lean-forward="true" selection-start-line="237" selection-start-column="13" selection-end-line="237" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/preprocessing/StructuralProcessing.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="675">
-                  <caret line="45" column="68" lean-forward="true" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
+                <state relative-caret-position="120">
+                  <caret line="11" column="97" selection-start-line="8" selection-start-column="4" selection-end-line="11" selection-end-column="97" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -54,8 +45,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/preprocessing/Melodic.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+                <state relative-caret-position="330">
+                  <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -66,8 +57,44 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+                <state relative-caret-position="900">
+                  <caret line="65" column="74" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="74" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/connectome_analyses/FunctionalConnectivity.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="570">
+                  <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+                  <folding>
+                    <element signature="e#0#43#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/preprocessing/StructuralProcessing.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1875">
+                  <caret line="129" column="40" selection-start-line="129" selection-start-column="40" selection-end-line="129" selection-end-column="40" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/collect_raw_data/collect_raw_data.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="300">
+                  <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
@@ -82,8 +109,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="975">
-                  <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+                <state relative-caret-position="774">
+                  <caret line="172" selection-start-line="172" selection-end-line="172" />
                 </state>
               </provider>
             </entry>
@@ -106,10 +133,12 @@
       <find>mean_filtered_func_data_bet</find>
       <find>$</find>
       <find>path_sub</find>
+      <find>numpy</find>
     </findStrings>
     <replaceStrings>
       <replace>self.</replace>
       <replace>path_fmri</replace>
+      <replace>self.path_fmri</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -123,22 +152,23 @@
         <option value="$PROJECT_DIR$/preprocessing/__init__.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/preprocessing/remove_first_two_volumes.py" />
-        <option value="$PROJECT_DIR$/collect_raw_data/collect_raw_data.py" />
-        <option value="$PROJECT_DIR$/preprocessing/StructuralProcessing.py" />
         <option value="$PROJECT_DIR$/connectome_analyses/__init__.py" />
         <option value="$PROJECT_DIR$/preprocessing/Preprocessing.py" />
         <option value="$PROJECT_DIR$/preprocessing/Melodic.py" />
         <option value="$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py" />
+        <option value="$PROJECT_DIR$/collect_raw_data/collect_raw_data.py" />
+        <option value="$PROJECT_DIR$/preprocessing/StructuralProcessing.py" />
         <option value="$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/connectome_analyses/FunctionalConnectivity.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1050" />
-    <option name="y" value="480" />
-    <option name="width" value="1680" />
-    <option name="height" value="1018" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1918" />
+    <option name="y" value="46" />
+    <option name="width" value="1924" />
+    <option name="height" value="1036" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -176,8 +206,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/sysadmin/backup_restore_test" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -233,10 +263,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1050" y="480" width="1680" height="1018" extended-state="6" />
-    <editor active="true" />
+    <frame x="1918" y="46" width="1924" height="1036" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15931372" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15952891" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -248,8 +277,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.33710408" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32918552" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32918552" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3290461" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -260,13 +289,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/collect_raw_data/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" selection-start-column="33" selection-end-column="33" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -285,20 +307,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collect_raw_data/collect_raw_data.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="33" selection-start-column="33" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/StructuralProcessing.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="68" lean-forward="true" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
+        <state relative-caret-position="120">
+          <caret line="11" column="97" selection-start-line="8" selection-start-column="4" selection-end-line="11" selection-end-column="97" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -307,35 +326,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/Melodic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="330">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/PreMelodicProcessing.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="237" column="13" lean-forward="true" selection-start-line="237" selection-start-column="13" selection-end-line="237" selection-end-column="13" />
+        <state relative-caret-position="900">
+          <caret line="65" column="74" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/PostMelodicProcessing.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/StructuralProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        <state relative-caret-position="1875">
+          <caret line="129" column="40" selection-start-line="129" selection-start-column="40" selection-end-line="129" selection-end-column="40" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collect_raw_data/collect_raw_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/connectome_analyses/FunctionalConnectivity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
+        <state relative-caret-position="774">
+          <caret line="172" selection-start-line="172" selection-end-line="172" />
         </state>
       </provider>
     </entry>
