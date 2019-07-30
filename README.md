@@ -32,7 +32,8 @@ The three necessary arguments are as follows:
  - 3) Stage - which stage of preprocessing to run; options are "Premelodic," "Melodic," "Postmelodic," and "All"
 
 
-To run premelodic steps (brain extraction, slicetime correction, motion outlier detection, etc.) on 10 threads:\n
+To run premelodic steps (brain extraction, slicetime correction, motion outlier detection, etc.) on 10 threads:
+
 `python main.py subject_list.csv 10 premelodic`
 
 
