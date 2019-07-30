@@ -33,7 +33,7 @@ The three necessary arguments are as follows:
  - 2) Number of threads - how many instances to run (usually 10, but can use from 1-64 on donut)
  - 3) Stage - which stage of preprocessing to run; options are "Premelodic," "Melodic," "Postmelodic," and "All"
 
-Additionally, [FSL tools](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki) needs to be installed. We also use some
+Additionally, [FSL tools](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki) and [ANTS](http://stnava.github.io/ANTs/) need to be installed. We also use some
 in house software for image conversion and the like.
 
 To run premelodic steps (brain extraction, slicetime correction, motion outlier detection, etc.) on 10 threads:
