@@ -11,11 +11,11 @@ the fMRI preprocessing pipeline has been reworked into one monolithic program
 to make everyone's lives easier.
 
 **This has 3  main advantages**:
-    - Speed: This program has been designed so that the user may specifiy 
-	     how many instances of the preprocessing pipeline may be run
-	     in parellel (10 is recommended)
-    - Easier to understand: 
-    - Easier to QC
+ - Speed: This program has been designed so that the user may specifiy 
+	      how many instances of the preprocessing pipeline may be run
+	      in parellel (10 is recommended)
+- Easier to understand: 
+- Easier to QC
 
 
 ### Usage
