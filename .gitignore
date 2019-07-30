@@ -1,3 +1,13 @@
 junk
 .idea/
 *.pyc
+*.csv
+*.txt
+.file_checker.py
+.ipynb_checkpoints
+.main.py.swp
+.permission.sh
+quality_control/reports
+testing.ipynb
+nilearn_cache/
+__pycache__/

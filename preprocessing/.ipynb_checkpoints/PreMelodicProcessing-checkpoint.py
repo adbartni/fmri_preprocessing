@@ -224,17 +224,24 @@ class Preprocessing:
         if not os.path.isdir(os.path.join(self.path_fmri, "ants")):
             os.mkdir(os.path.join(self.path_fmri, "ants"))
 
-        if not os.path.exists(self.path_fmri + "/ants/epi2braints.nii.gz"):
+        if not os.path.exists(self.path_fmri + "/ants/.epi2braints.nii.gz"):
+            os.system(
+                fslDir + "fslmaths " + self.path_fmri + "/dc/unwarped.nii.gz -Tmean " +
+                self.path_fmri + "/dc/mean_unwarped"
+            )
             os.system(
                self.ants_path + "antsRegistrationSyN.sh -d 3 -f " +
                self.path_HCP + "/T1w_acpc_dc_restore_brain_2.00.nii.gz -m " +
-               self.path_fmri + "/dc/mean_filtered_func_data_bet.nii.gz -o " + self.path_fmri + "/ants/epi2brain -n 32 -t s"
+               self.path_fmri + "/dc/mean_unwarped.nii.gz -o " + 
+               self.path_fmri + "/ants/epi2brain -n 32 -t s"
             )
             os.system(
-                self.ants_path + "antsApplyTransforms -d 3 -i " + self.path_fmri + "/filtered_func_data_bet.nii.gz -e 3 -r " +
+                self.ants_path + "antsApplyTransforms -d 3 -i " + 
+                self.path_fmri + "/filtered_func_data_bet.nii.gz -e 3 -r " +
                 self.path_HCP + "/T1w_acpc_dc_restore_brain_2.00.nii.gz -o " +
                 self.path_fmri + "/ants/epi2braints.nii.gz -n NearestNeighbor -t " +
-                self.path_fmri + "/ants/epi2brain1Warp.nii.gz -t " + self.path_fmri + "/ants/epi2brain0GenericAffine.mat"
+                self.path_fmri + "/ants/epi2brain1Warp.nii.gz -t " + 
+                self.path_fmri + "/ants/epi2brain0GenericAffine.mat"
             )
 
 
@@ -280,5 +287,3 @@ class Preprocessing:
             fslDir + "fslmaths " + self.path_fmri + "/filtered_func_data_smo.nii.gz -mas " +
             self.path_fmri + "/mean_epi_in_struct_mask.nii.gz " + self.path_fmri + "/filtered_func_data_smo.nii.gz"
         )
-
-

@@ -23,6 +23,7 @@ class FunctionalConnectome:
         regions = nibabel.load(self.path_HCP + 'GMmask_2.00.nii.gz')
         fmri4D = nibabel.load(self.path_fmri + '/denoise.ica/Denoised_data.nii.gz')
         nilearn.regions.img_to_signals_labels(fmri4D, regions)
+        print("Extracted fMRI signal")
 
         # Masks out the CSF signal, WM signal, and motion confounds
         masker = NiftiLabelsMasker(labels_img=regions, standardize=True,

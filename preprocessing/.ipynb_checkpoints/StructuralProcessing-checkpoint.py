@@ -85,6 +85,10 @@ class StructuralProcessing(Preprocessing):
 
         threshold_additon_cmd += " " + self.path_HCP + "/GMmask.nii.gz"
         os.system(threshold_additon_cmd)
+        
+        for index in segments:
+            temp_img = "GMmask" + str(index) + ".nii.gz"
+            os.remove(os.path.join(self.path_HCP, temp_img))
 
 
     def csf_mask(self):
@@ -104,6 +108,10 @@ class StructuralProcessing(Preprocessing):
 
         threshold_additon_cmd += " " + self.path_HCP + "/CSFmask.nii.gz"
         os.system(threshold_additon_cmd)
+        
+        for index in segments:
+            temp_img = "CSFmask" + str(index) + ".nii.gz"
+            os.remove(os.path.join(self.path_HCP, temp_img))
 
 
     def wm_mask(self):
@@ -123,20 +131,36 @@ class StructuralProcessing(Preprocessing):
 
         threshold_additon_cmd += " " + self.path_HCP + "/WMmask.nii.gz"
         os.system(threshold_additon_cmd)
+        
+        for index in segments:
+            temp_img = "WMmask" + str(index) + ".nii.gz"
+            os.remove(os.path.join(self.path_HCP, temp_img))
 
 
     def binarize_masks(self):
 
         mask_types = ["WM", "GM", "CSF"]
         for mask in mask_types:
+            if mask == "GM":
+                os.system(
+                        fslDir + "flirt -interp nearestneighbour -in " + self.path_HCP + mask + "mask.nii.gz " + 
+                        "-ref " + self.path_HCP + mask + "mask.nii.gz -applyisoxfm 2.0 " + 
+                        "-out " + self.path_HCP + mask + "mask_2.00.nii.gz"
+                )
+                os.system(
+                        fslDir + "fslmaths " + self.path_HCP + mask + "mask_2.00.nii.gz -bin " + 
+                        self.path_HCP + mask + "mask_bin_2.00.nii.gz"
+                )
 
-            os.system(
-                fslDir + "fslmaths " + self.path_HCP + "/" + mask + "mask.nii.gz -bin " +
-                self.path_HCP + "/" + mask + "mask_bin.nii.gz"
-            )
-            os.system(
-                fslDir + "flirt -interp nearestneighbour -in " + self.path_HCP + "/" + mask + "mask_bin.nii.gz " +
-                "-ref " + self.path_HCP + "/" + mask + "mask_bin.nii.gz" +
-                " -applyisoxfm 2.0 " +
-                " -out " + self.path_HCP + "/" + mask + "mask_bin_2.00.nii.gz"
-            )
+            else:
+                os.system(
+                    fslDir + "fslmaths " + self.path_HCP + "/" + mask + "mask.nii.gz -bin " +
+                    self.path_HCP + "/" + mask + "mask_bin.nii.gz"
+                )
+                os.system(
+                    fslDir + "flirt -interp nearestneighbour -in " + self.path_HCP + "/" + mask + "mask_bin.nii.gz " +
+                    "-ref " + self.path_HCP + "/" + mask + "mask_bin.nii.gz" +
+                    " -applyisoxfm 2.0 " +
+                    " -out " + self.path_HCP + "/" + mask + "mask_bin_2.00.nii.gz"
+                )
+

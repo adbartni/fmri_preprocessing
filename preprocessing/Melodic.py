@@ -48,4 +48,3 @@ class Melodic(Preprocessing):
             "--report --guireport=" + self.path_fmri + "/denoise.ica/filtered_func_data.ica/report.html " +
             "--bgimage=" + self.path_fmri + "/denoise.ica/ants/epi2brain1Warp.nii.gz --mmthresh=0.5 --Ostats --Oorig"
         )
-

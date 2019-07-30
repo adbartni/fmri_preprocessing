@@ -1,4 +1,5 @@
 The new and improved resting-state fMRI preprocessing pipeline
+*****DATE and NAME. 
 
 Due to the free-for-all nature of processing in a notebook leading to inconsistencies
 and the generation of huge images that were never used in the final analyses,
@@ -25,3 +26,6 @@ The three necessary arguments are as follows:
 1) Subject list - self explanatory, just a file containing the subjects you want to process
 2) Number of threads - how many instances to run (usually 10, but can use from 1-64 on donut)
 3) Stage - which stage of preprocessing to run; options are "Premelodic," "Melodic," "Postmelodic," and "All"
+
+
+********** provide ecample. 

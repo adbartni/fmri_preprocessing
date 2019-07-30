@@ -85,6 +85,10 @@ class StructuralProcessing(Preprocessing):
 
         threshold_additon_cmd += " " + self.path_HCP + "/GMmask.nii.gz"
         os.system(threshold_additon_cmd)
+        
+        for index in segments:
+            temp_img = "GMmask" + str(index) + ".nii.gz"
+            os.remove(os.path.join(self.path_HCP, temp_img))
 
 
     def csf_mask(self):
@@ -104,6 +108,10 @@ class StructuralProcessing(Preprocessing):
 
         threshold_additon_cmd += " " + self.path_HCP + "/CSFmask.nii.gz"
         os.system(threshold_additon_cmd)
+        
+        for index in segments:
+            temp_img = "CSFmask" + str(index) + ".nii.gz"
+            os.remove(os.path.join(self.path_HCP, temp_img))
 
 
     def wm_mask(self):
@@ -123,6 +131,10 @@ class StructuralProcessing(Preprocessing):
 
         threshold_additon_cmd += " " + self.path_HCP + "/WMmask.nii.gz"
         os.system(threshold_additon_cmd)
+        
+        for index in segments:
+            temp_img = "WMmask" + str(index) + ".nii.gz"
+            os.remove(os.path.join(self.path_HCP, temp_img))
 
 
     def binarize_masks(self):

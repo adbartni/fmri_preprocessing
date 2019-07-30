@@ -1,6 +1,4 @@
 import os
-import subprocess
-from shutil import copyfile, copytree
 import pandas as pd
 from __init__ import fslDir
 from PreMelodicProcessing import Preprocessing
@@ -16,7 +14,7 @@ class PostMelodic(Preprocessing):
 
     def denoise(self):
 
-        if os.path.exists(self.path_fmri + "/denoise.ica/filtered_func_data.ica/HandDenoisedLabels.txt") and not os.path.exists(self.path_fmri + "denoise.ica/Denoised_data.nii.gz"):
+        if os.path.exists(self.path_fmri + "/denoise.ica/filtered_func_data.ica/HandDenoisedLabels.txt"):
 
             with open(self.path_fmri + "/denoise.ica/filtered_func_data.ica/HandDenoisedLabels.txt", "r") as noise_file:
                 for line in noise_file:
@@ -51,6 +49,11 @@ class PostMelodic(Preprocessing):
         csf = pd.read_csv(self.path_fmri + '/meants/meantsCSF.csv', sep=',', header=None)
         wm = pd.read_csv(self.path_fmri + '/meants/meantsWM.csv', sep=',', header=None)
         mc = pd.read_csv(self.path_fmri + '/mc/prefiltered_func_data_mcf.par', sep='  ', header=None)
+        
+        if csf[0].count() == wm[0].count() == mc[0].count():
+            pass
+        else:
+            print("{}: Not the same number of rows".format(self.subjectID))
 
         if not os.path.isdir(self.path_fmri + "/spreadsheets"):
             os.mkdir(self.path_fmri + "/spreadsheets")

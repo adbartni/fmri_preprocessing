@@ -1,6 +1,4 @@
 import os
-import subprocess
-from shutil import copyfile, copytree
 import pandas as pd
 from __init__ import fslDir
 from PreMelodicProcessing import Preprocessing
@@ -22,20 +20,12 @@ class PostMelodic(Preprocessing):
                 for line in noise_file:
                     pass
                 raw_noise = line
-            noise = raw_noise.strip('[').strip(']').replace(' ','')
-            print(noise)
-
-            # Keeping commented in case the new way doesn't work
-            # raw_noise = raw_noise[0][1:-1]
-            # noise = ''
-            # for character in raw_noise:
-            #     if character != ' ':
-            #         noise += character
+            noise = raw_noise.replace(' ','').replace('[','').replace(']','')
 
             os.system(
-                fslDir + "fsl_regfilt -i self.path_fmri/denoise.ica/filtered_func_data_smo.nii.gz -o " +
+                fslDir + "fsl_regfilt -i " + self.path_fmri + "/denoise.ica/filtered_func_data_smo.nii.gz -o " +
                 self.path_fmri + "/denoise.ica/Denoised_data.nii.gz -d " +
-                self.path_fmri + "/denoise.ica/filtered_func_data.ica/melodic_mix -f " + noise + " -v"
+                self.path_fmri + "/denoise.ica/filtered_func_data.ica/melodic_mix -f " + noise
             )
 
 
@@ -59,6 +49,11 @@ class PostMelodic(Preprocessing):
         csf = pd.read_csv(self.path_fmri + '/meants/meantsCSF.csv', sep=',', header=None)
         wm = pd.read_csv(self.path_fmri + '/meants/meantsWM.csv', sep=',', header=None)
         mc = pd.read_csv(self.path_fmri + '/mc/prefiltered_func_data_mcf.par', sep='  ', header=None)
+        
+        if csf[0].count() == wm[0].count() == mc[0].count():
+            pass
+        else:
+            print("{}: Not the same number of rows".format(self.subjectID))
 
         if not os.path.isdir(self.path_fmri + "/spreadsheets"):
             os.mkdir(self.path_fmri + "/spreadsheets")
