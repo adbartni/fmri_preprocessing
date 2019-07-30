@@ -22,8 +22,10 @@ to make everyone's lives easier.
 In order for processing to successfully run, you'll need to make sure you have all of the
 required python packages (numpy, nilearn, sklearn, pandas).
 The easiest way to do this is to source the python venv in /.../connectome/venv/bin/activate.
+Otherwise, Python 2.7 needs to be installed. Support for Python 3 is upcoming.
 This is done anytime the user runs `./activate` in this directory, like:
-$ ./activate 
+`$ ./activate`
+ 
 To leave the venv and carry on with your normal life, simply enter 'deactivate' in your terminal.
 
 The three necessary arguments are as follows:
@@ -34,6 +36,6 @@ The three necessary arguments are as follows:
 
 To run premelodic steps (brain extraction, slicetime correction, motion outlier detection, etc.) on 10 threads:
 
-`python main.py subject_list.csv 10 premelodic`
+`$ python main.py subject_list.csv 10 premelodic`
 
 
