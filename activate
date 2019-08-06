@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source /shared/studies/nonregulated/connectome/venv/bin/activate
+source /shared/studies/nonregulated/connectome/fmri/preprocessing_pipeline/venv/bin/activate

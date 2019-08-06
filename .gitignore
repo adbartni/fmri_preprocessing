@@ -11,3 +11,5 @@ quality_control/reports
 testing.ipynb
 nilearn_cache/
 __pycache__/
+.scratch/
+venv/

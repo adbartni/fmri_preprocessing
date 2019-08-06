@@ -1,7 +1,7 @@
 import os
 import pandas as pd
-from __init__ import fslDir
-from PreMelodicProcessing import Preprocessing
+from .__init__ import fslDir
+from .PreMelodicProcessing import Preprocessing
 
 
 class PostMelodic(Preprocessing):

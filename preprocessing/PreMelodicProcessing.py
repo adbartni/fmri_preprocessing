@@ -1,7 +1,7 @@
 import os
 import subprocess
 from shutil import copyfile
-from __init__ import fslDir
+from .__init__ import fslDir
 
 
 class Preprocessing:

@@ -1,8 +1,8 @@
 import os
 import subprocess
 import re
-from __init__ import fslDir
-from PreMelodicProcessing import Preprocessing
+from .__init__ import fslDir
+from .PreMelodicProcessing import Preprocessing
 
 
 class StructuralProcessing(Preprocessing):

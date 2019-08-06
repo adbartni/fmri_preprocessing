@@ -1,8 +1,8 @@
 import os
 import subprocess
 from shutil import copyfile, copytree
-from __init__ import fslDir
-from PreMelodicProcessing import Preprocessing
+from .__init__ import fslDir
+from .PreMelodicProcessing import Preprocessing
 
 
 class Melodic(Preprocessing):
