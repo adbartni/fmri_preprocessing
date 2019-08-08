@@ -1,9 +1,13 @@
-from sklearn.covariance import GraphLassoCV
+import warnings
+with warnings.catch_warnings():
+    warnings.filterwarnings("ignore",category=DeprecationWarning)
+    warnings.filterwarnings("ignore", category=RuntimeWarning)
+    import numpy as np
+    from sklearn.covariance import GraphLassoCV
 import nibabel
 import nilearn.regions
 from nilearn.input_data import NiftiLabelsMasker
 from nilearn.connectome import ConnectivityMeasure
-import numpy as np
 
 
 class FunctionalConnectome:

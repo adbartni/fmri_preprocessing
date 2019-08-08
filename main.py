@@ -1,5 +1,6 @@
-#!/usr/bin/ipython
+#!/usr/bin/env python
 
+import begin
 import os
 import sys
 import re
@@ -32,12 +33,12 @@ class PreprocessingPipeline:
                              motion correction, distortion correction,
                              registration into T1 space, etc.
                 Melodic - independent component analysis across time series;
-                          as of now, hand denoising MUST be done after this step
+                             as of now, hand denoising MUST be done after this step
                 Postmelodic - Removal of noise components, spatial smoothing,
-                          masking of confounds, and generation of 
-                          functional connectome for each subject
+                             masking of confounds, and generation of 
+                             functional connectome for each subject
                 All - << DON'T ACTUALLY DO THIS UNTIL FIX IS WORKING >>
-                      Run the entire pipeline at once; 
+                             Run the entire pipeline at once; 
         """
 
         for subjectID in self.subject_list:
@@ -154,7 +155,6 @@ class PreprocessingPipeline:
                 print("{}: Something went wrong".format(subjectID))
                 pass
 
-            break
 
 
 def starting_files_present(subjectID):
@@ -198,10 +198,15 @@ def create_threads(full_subject_list, num_threads):
         yield(full_subject_list[i:i + num_threads])
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
+@begin.start
+def run(subject_list_file: "Subject list",
+        num_threads: "Number of threads",
+        stage: "Stage of preprocessing to run",
+        cleanup = False):
 
     # Read in subject list from command line argument
-    with open(sys.argv[1]) as infile:
+    with open(subject_list_file) as infile:
         full_subject_list = infile.read().splitlines()
 
     #phase = sys.argv[2]
@@ -210,10 +215,9 @@ if __name__ == "__main__":
     #preproc.pipeline()
 
     # Split up list into specified number of sublists and run in parellel
-    num_threads = int(sys.argv[2])
-    phase = sys.argv[3]
+    num_threads = int(num_threads)
 
     for thread in create_threads(full_subject_list, num_threads):
-       preproc = PreprocessingPipeline(thread, phase)
+       preproc = PreprocessingPipeline(thread, stage)
        thread_process = Thread(target = preproc.pipeline)
        thread_process.start()
