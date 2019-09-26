@@ -14,6 +14,9 @@ class Melodic(Preprocessing):
         self.path_HCP = Preprocessing.path_HCP
 
     def init_melodic_directory(self):
+        """
+            Sets up files needed for MELODIC to run in /.../<subject>/denoise.ica/
+        """
 
         if not os.path.isdir(self.path_fmri + "/denoise.ica/"):
             os.mkdir(self.path_fmri + "/denoise.ica/")

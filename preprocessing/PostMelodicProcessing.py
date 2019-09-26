@@ -11,6 +11,7 @@ class PostMelodic(Preprocessing):
         self.subjectID = Preprocessing.subjectID
         self.path_fmri = Preprocessing.path_fmri
         self.path_HCP = Preprocessing.path_HCP
+        self.mni_image = "/usr/share/fsl/5.0/data/standard/MNI152_T1_2mm_brain.nii.gz"
 
     def denoise(self):
 
@@ -29,6 +30,13 @@ class PostMelodic(Preprocessing):
             )
 
 
+    def temporal_filtering(self):
+        os.system(
+            fslDir + "fslmaths " + self.path_fmri + "/denoise.ica/Denoised_data.nii.gz -bptf 400 -1 -add " +
+            self.path_fmri + "/tempMean.nii.gz " + self.path_fmri + "/temp_filtered_denoised_data"
+        )
+
+
     def mask_mean_time_series(self):
 
         if not os.path.isdir(self.path_fmri + "/meants"):
@@ -38,7 +46,7 @@ class PostMelodic(Preprocessing):
         for mask in mask_types:
 
             os.system(
-                fslDir + "fslmeants -i " + self.path_fmri + "/denoise.ica/Denoised_data.nii.gz -o " +
+                fslDir + "fslmeants -i " + self.path_fmri + "/temp_filtered_denoised_data.nii.gz -o " +
                 self.path_fmri + "meants/meants" + mask + ".csv -m " +
                 self.path_HCP + "/" + mask + "mask_bin_2.00.nii.gz"
             )

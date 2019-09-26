@@ -15,6 +15,9 @@ class StructuralProcessing(Preprocessing):
         self.path_HCP = Preprocessing.path_HCP
 
     def generate_aparcaseg(self):
+        """ aparc+aseg comes from freesurfer as a .mgz image with information pertaining
+            to the location of various brain regions, here we convert it to .nii.gz
+        """
         os.system(
             self.mc_path + "mri_convert " + self.path_HCP + self.subjectID + "/mri/aparc+aseg.mgz " +
             self.path_HCP + "/aparc_aseg_fs.nii.gz"
@@ -35,6 +38,8 @@ class StructuralProcessing(Preprocessing):
 
 
     def downsize_T1(self):
+        """ Makes most operations faster than working with the high-res T1 image
+        """
 
         os.system(
             fslDir + "flirt -interp spline -in " + self.path_HCP + "/T1w_acpc_dc_restore.nii.gz -ref " +
@@ -49,6 +54,9 @@ class StructuralProcessing(Preprocessing):
 
 
     def gm_mask(self):
+        """ Select only the 86 brain regions as defined in the freesurfer atlas
+            that we are interested in studying brain activity in
+        """
 
         segments = [8]
         for i in range(10,14):
@@ -92,6 +100,8 @@ class StructuralProcessing(Preprocessing):
 
 
     def csf_mask(self):
+        """ Select regions of vesicles and CSF to mask out of time series analysis
+        """
 
         segments = [4,5,14,15,24,43,44]
         threshold_additon_cmd = fslDir + "fslmaths " + self.path_HCP
@@ -115,6 +125,8 @@ class StructuralProcessing(Preprocessing):
 
 
     def wm_mask(self):
+        """ Select regions of white matter to mask out of time series analysis
+        """
 
         segments = [2,7,41,46]
         threshold_additon_cmd = fslDir + "fslmaths " + self.path_HCP

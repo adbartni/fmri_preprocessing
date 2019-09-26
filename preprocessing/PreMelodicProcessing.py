@@ -5,6 +5,19 @@ from .__init__ import fslDir
 
 
 class Preprocessing:
+    """ A class to hold all of the initial preprocessing steps prior to denoising
+
+        No structural processing happens here, see StructuralProcessing.py for that
+
+        The preprocessing steps contained here are removal of the first two volumes,
+        slicetime correction, motion correction, intensity normalization, calculation of the
+        temporal mean, brain extraction of functional and phasemap images, epi distortion
+        correction, fieldmap unwarping via fugue, registration into T1 space via ANTs,
+        motion outlier detection, and 4mm spatial smoothing
+
+        Methods are named so as to be readily apparent what is being done at each
+        step of preprocessing
+    """
 
     def __init__(self, subjectID):
         self.subjectID = subjectID
@@ -52,16 +65,9 @@ class Preprocessing:
         )
 
 
-    def temporal_filtering(self):
-        os.system(
-            fslDir + "fslmaths " + self.path_fmri + "/prefiltered_func_data_in.nii.gz -bptf 400 -1 -add " +
-            self.path_fmri + "/tempMean.nii.gz " + self.path_fmri + "/filtered_func_data"
-        )
-
-
     def brain_extraction(self):
         os.system(
-            fslDir + "fslmaths " + self.path_fmri + "/filtered_func_data.nii.gz -Tmean " +
+            fslDir + "fslmaths " + self.path_fmri + "/prefiltered_func_data_in.nii.gz -Tmean " +
             self.path_fmri + "/mean_func_filtered"
         )
         os.system(
@@ -72,7 +78,7 @@ class Preprocessing:
             fslDir + "immv " + self.path_fmri + "/filtered_mask_mask " + self.path_fmri + "/filtered_mask"
         )
         os.system(
-            fslDir + "fslmaths " + self.path_fmri + "/filtered_func_data.nii.gz -mas " +
+            fslDir + "fslmaths " + self.path_fmri + "/prefiltered_func_data_in.nii.gz -mas " +
             self.path_fmri + "/filtered_mask " + self.path_fmri + "/filtered_func_data_bet.nii.gz"
         )
 
@@ -213,6 +219,8 @@ class Preprocessing:
 
 
     def fugue(self):
+        """ Unwarp the fieldmap
+        """
         os.system(
             fslDir + "fugue -i " + self.path_fmri + "/filtered_func_data_bet.nii.gz --loadfmap=" +
             self.path_fmri + "/dc/fieldmap2epi_mean_centered_0outside.nii.gz --dwell=0.0002 --unwarpdir=y- -u " +
@@ -221,10 +229,12 @@ class Preprocessing:
 
 
     def ANTs_registration(self):
+        """ Register the functional time series into T1 space
+        """
         if not os.path.isdir(os.path.join(self.path_fmri, "ants")):
             os.mkdir(os.path.join(self.path_fmri, "ants"))
 
-        if not os.path.exists(self.path_fmri + "/ants/.epi2braints.nii.gz"):
+        if not os.path.exists(self.path_fmri + "/ants/epi2braints.nii.gz"):
             os.system(
                 fslDir + "fslmaths " + self.path_fmri + "/dc/unwarped.nii.gz -Tmean " +
                 self.path_fmri + "/dc/mean_unwarped"

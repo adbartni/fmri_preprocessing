@@ -105,8 +105,7 @@ class PreprocessingPipeline:
                     postmel.mask_mean_time_series()
                     postmel.create_all_confounds()
                     
-                    # Unable to complete this step with the current version of python on donut
-                    #fcon.create_functional_connectivity_matrix()
+                    fcon.create_functional_connectivity_matrix()
 
                 elif self.phase == "all":
                     """ 
@@ -120,13 +119,13 @@ class PreprocessingPipeline:
                     structproc = StructuralProcessing(processing)
                     melodic = Melodic(processing)
                     postmel = PostMelodic(processing)
+                    fcon = FunctionalConnectome(subjectID)
 
                     processing.remove_first_two_volumes()
                     processing.slicetime_correction()
                     processing.motion_correction()
                     processing.intensity_normalization()
                     processing.temporal_mean()
-                    processing.temporal_filtering()
                     processing.brain_extraction()
                     processing.epi_distortion_correction()
                     processing.zero_center_fieldmap()
@@ -141,7 +140,9 @@ class PreprocessingPipeline:
                     melodic.init_melodic_directory()
                     melodic.ICA()
                     # FIX would go here
+                    # FIX **is** currently working, need to add to pipeline
                     postmel.denoise()
+                    postmel.temporal_filtering()
 
                     structproc.gm_mask()
                     structproc.csf_mask()
@@ -150,6 +151,13 @@ class PreprocessingPipeline:
 
                     postmel.mask_mean_time_series()
                     postmel.create_all_confounds()
+
+                    fcon.create_functional_connectivity_matrix()
+
+                else:
+                    # Function to match single step specified 
+                    # at cli will go here once it's working
+                    pass
 
             except:
                 print("{}: Something went wrong".format(subjectID))
@@ -198,21 +206,20 @@ def create_threads(full_subject_list, num_threads):
         yield(full_subject_list[i:i + num_threads])
 
 
-# if __name__ == "__main__":
+## FOR BEGINNERS ##
+# Anything defined after the begin.start decorator will be run automatically;
+# Arguments for anything defined here are used as command line arguments;
 @begin.start
 def run(subject_list_file: "Subject list",
         num_threads: "Number of threads",
         stage: "Stage of preprocessing to run",
-        cleanup = False):
+        step: "To run only one step of the pipeline" = None,
+        cleanup: "Clean up intermediary files generated during processing"
+             = False):
 
     # Read in subject list from command line argument
     with open(subject_list_file) as infile:
         full_subject_list = infile.read().splitlines()
-
-    #phase = sys.argv[2]
-    #print(phase)
-    #preproc = PreprocessingPipeline(full_subject_list, phase)
-    #preproc.pipeline()
 
     # Split up list into specified number of sublists and run in parellel
     num_threads = int(num_threads)
@@ -221,3 +228,4 @@ def run(subject_list_file: "Subject list",
        preproc = PreprocessingPipeline(thread, stage)
        thread_process = Thread(target = preproc.pipeline)
        thread_process.start()
+

@@ -31,10 +31,13 @@ def match(subjectID, function):
     for func in struct_funcs:
         functions[func[0]] = func[1]
 
-    print(functions["epi_distortion_correction"]
     for function_name, function_object in functions.items():
         if function == function_name:
-            return function_object
+            if function in [subname[0] for subname in premel_funcs]:
+                print(function_object)
+                return(processing.function_object)
+            else:
+                return(function_object)
 
 if __name__ == "__main__":
         function = match("EX54589", "epi_distortion_correction")
