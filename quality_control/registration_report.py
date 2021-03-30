@@ -4,11 +4,13 @@ import nibabel
 import os
 
 
+# Creates a string of all the filenames of T1 and registered functional images
+# to feed into ImageMagick
 subjects_as_string = ""
 for subjectID in subject_list:
 
     reg_func_file = path_fmri + subjectID + "/ants/epi2braints.nii.gz"
-    t1_file = "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + \
+    t1_file = "/shared/nonrestricted/connectome/Subjects/" + subjectID + \
             "/T1w/T1w_acpc_dc_restore_brain_2.00.nii.gz"
     if os.path.exists(reg_func_file) and os.path.exists(t1_file):
 
@@ -33,5 +35,6 @@ for subjectID in subject_list:
 
     #break
 
+# Creates a pdf of functional images overlaid on T1 for all subjects
 os.system("convert " + subjects_as_string + " reports/missing_subs_epi2struct.pdf")
 

@@ -14,8 +14,8 @@ class FunctionalConnectome:
 
     def __init__(self, subjectID):
         self.subjectID = subjectID
-        self.path_fmri = "/shared/studies/nonregulated/connectome/fmri/subjects/" + subjectID + "/"
-        self.path_HCP = "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/"
+        self.path_fmri = "/shared/nonrestricted/connectome/fmri/subjects/" + subjectID + "/"
+        self.path_HCP = "/shared/nonrestricted/connectome/Subjects/" + subjectID + "/T1w/"
 
     def create_functional_connectivity_matrix(self):
         """ Performs functional connectivity analysis on a subject

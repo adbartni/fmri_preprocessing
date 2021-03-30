@@ -32,7 +32,7 @@ class Melodic(Preprocessing):
                 copyfile(self.path_fmri + cp_file,
                         self.path_fmri + "denoise.ica/" + cp_file)
         if not os.path.exists(self.path_fmri + "denoise.ica/design.fsf"):
-            copyfile("/shared/studies/nonregulated/connectome/fmri/subjects/design.fsf",
+            copyfile("/shared/nonrestricted/connectome/fmri/subjects/design.fsf",
                     self.path_fmri + "denoise.ica/design.fsf")
 
         for cp_dir in dirs:

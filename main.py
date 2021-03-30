@@ -58,8 +58,8 @@ class PreprocessingPipeline:
             try:
                 if self.phase == "premelodic":
                     init_fmri_subject_dir(subjectID,
-                                          "/shared/studies/nonregulated/connectome/fmri/subjects/",
-                                          "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/")
+                                          "/shared/nonrestricted/connectome/fmri/subjects/",
+                                          "/shared/nonrestricted/connectome/Subjects/" + subjectID + "/T1w/")
 
                     processing = Preprocessing(subjectID)
                     structproc = StructuralProcessing(processing)
@@ -112,8 +112,8 @@ class PreprocessingPipeline:
                     <<< DON'T USE THIS UNTIL FIX IS WORKING >>> 
                     """
                     init_fmri_subject_dir(subjectID,
-                                           "/shared/studies/nonregulated/connectome/fmri/subjects/",
-                                           "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/")
+                                           "/shared/nonrestricted/connectome/fmri/subjects/",
+                                           "/shared/nonrestricted/connectome/Subjects/" + subjectID + "/T1w/")
 
                     processing = Preprocessing(subjectID)
                     structproc = StructuralProcessing(processing)
@@ -173,10 +173,10 @@ def starting_files_present(subjectID):
         before beginning processing
     """
 
-    path_conntectome = "/shared/studies/nonregulated/connectome/"
+    path_conntectome = "/shared/nonrestricted/connectome/"
     functional_data = path_conntectome + "fmri/subjects/" + subjectID + "/rawfunc.nii.gz"
     structural_data = path_conntectome + "Subjects/" + subjectID + "/T1w/T1w_acpc_dc_restore_brain.nii.gz"
-    QSM_path = "/shared/studies/nonregulated/qsm_repo/data/" + subjectID.replace("EX","") + "/recon/"
+    QSM_path = "/shared/nonrestricted/qsm_repo/data/" + subjectID.replace("EX","") + "/recon/"
 
     if (not os.path.exists(functional_data)
             or not os.path.exists(structural_data)

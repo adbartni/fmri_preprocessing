@@ -21,8 +21,8 @@ class Preprocessing:
 
     def __init__(self, subjectID):
         self.subjectID = subjectID
-        self.path_fmri = "/shared/studies/nonregulated/connectome/fmri/subjects/" + subjectID + "/"
-        self.path_HCP = "/shared/studies/nonregulated/connectome/Subjects/" + subjectID + "/T1w/"
+        self.path_fmri = "/shared/nonrestricted/connectome/fmri/subjects/" + subjectID + "/"
+        self.path_HCP = "/shared/nonrestricted/connectome/Subjects/" + subjectID + "/T1w/"
         self.mc_path = "/shared/software/vendor/freesurfer/freesurfer-5.3.0_x86_64/bin/"
         self.ants_path = "/usr/lib/ants/"
 
