@@ -13,3 +13,6 @@ nilearn_cache/
 __pycache__/
 .scratch/
 venv/
+venv-donut/
+.vscode/
+.vscode/settings.json

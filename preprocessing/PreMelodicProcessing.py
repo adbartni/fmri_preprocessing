@@ -64,10 +64,20 @@ class Preprocessing:
             self.path_fmri + "/tempMean"
         )
 
+    ## Might want to double check this, adapting from Tom's vu_C fork
+    def temporal_filtering(self):
+        if os.path.exists(self.path_fmri + "/filtered_func_data.nii.gz"):
+            return
+
+        os.system(
+            fslDir + "fslmaths " + self.path_fmri + "/prefiltered_func_data_in.nii.gz -bptf 400 -1 -add " +
+            self.path_fmri + "/tempMean.nii.gz " + self.path_fmri + "/filtered_func_data"
+        )
+
 
     def brain_extraction(self):
         os.system(
-            fslDir + "fslmaths " + self.path_fmri + "/prefiltered_func_data_in.nii.gz -Tmean " +
+            fslDir + "fslmaths " + self.path_fmri + "/filtered_func_data.nii.gz -Tmean " +
             self.path_fmri + "/mean_func_filtered"
         )
         os.system(
@@ -78,7 +88,7 @@ class Preprocessing:
             fslDir + "immv " + self.path_fmri + "/filtered_mask_mask " + self.path_fmri + "/filtered_mask"
         )
         os.system(
-            fslDir + "fslmaths " + self.path_fmri + "/prefiltered_func_data_in.nii.gz -mas " +
+            fslDir + "fslmaths " + self.path_fmri + "/filtered_func_data.nii.gz -mas " +
             self.path_fmri + "/filtered_mask " + self.path_fmri + "/filtered_func_data_bet.nii.gz"
         )
 
