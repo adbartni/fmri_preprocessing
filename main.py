@@ -14,9 +14,6 @@ def create_threads(full_subject_list, num_threads):
         yield(full_subject_list[i:i + num_threads])
 
 
-## FOR BEGINNERS ##
-# Anything defined after the begin.start decorator will be run automatically;
-# Arguments for anything defined here are used as command line arguments;
 @begin.start
 def run(subject_list_file: "Subject list",
         num_threads: "Number of threads",
