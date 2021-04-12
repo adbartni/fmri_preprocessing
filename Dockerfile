@@ -10,7 +10,8 @@ ADD connectome_analyses /opt/fmri_pipeline/connectome_analyses
 ADD README.md /opt/fmri_pipeline/README.md
 ADD requirements.txt /opt/fmri_pipeline/requirements.txt
 
-COPY /usr/bin/ANTS /usr/bin/ANTS
+RUN mkdir /usr/lib/ANTS
+COPY /usr/lib/ANTS /usr/lib/ANTS
 
 ENV PATH="/opt/fmri_pipeline:${PATH}"
 
