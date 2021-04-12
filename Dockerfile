@@ -17,3 +17,5 @@ ENV PATH="/opt/fmri_pipeline:${PATH}"
 
 RUN pip3 install wheel
 RUN pip3 install -r /opt/fmri_pipeline/requirements.txt
+
+WORKDIR /work
