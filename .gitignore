@@ -14,3 +14,8 @@ __pycache__/
 .scratch/
 venv/
 venv-donut/
+<<<<<<< HEAD
+=======
+.vscode/
+.vscode/settings.json
+>>>>>>> single-sub
