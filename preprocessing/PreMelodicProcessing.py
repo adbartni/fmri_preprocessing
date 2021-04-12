@@ -1,8 +1,9 @@
 import os
 import subprocess
 from shutil import copyfile
-from .__init__ import fslDir
 
+
+fslDir = os.environ['FSLDIR'] + "/bin/"
 
 class Preprocessing:
     """ A class to hold all of the initial preprocessing steps prior to denoising

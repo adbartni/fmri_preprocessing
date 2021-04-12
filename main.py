@@ -15,22 +15,26 @@ def create_threads(full_subject_list, num_threads):
 
 
 @begin.start
-def run(subject_list_file: "Subject list",
-        num_threads: "Number of threads",
+def run(raw_fmri: "Input fMRI nifti",
+        t1: "Input T1 aparc aseg nifti",
         stage: "Stage of preprocessing to run",
-        step: "To run only one step of the pipeline" = None,
-        cleanup: "Clean up intermediary files generated during processing"
+        qsm: "Susceptibility maps present"
              = False):
 
-    # Read in subject list from command line argument
-    with open(subject_list_file) as infile:
-        full_subject_list = infile.read().splitlines()
+    print(raw_fmri)
+    print(t1)
+    print(stage)
+    print(qsm)
 
-    # Split up list into specified number of sublists and run in parellel
-    num_threads = int(num_threads)
+    # # Read in subject list from command line argument
+    # with open(subject_list_file) as infile:
+    #     full_subject_list = infile.read().splitlines()
 
-    for thread in create_threads(full_subject_list, num_threads):
-       preproc = PreprocessingPipeline(thread, stage)
-       thread_process = Thread(target = preproc.pipeline)
-       thread_process.start()
+    # # Split up list into specified number of sublists and run in parellel
+    # num_threads = int(num_threads)
+
+    # for thread in create_threads(full_subject_list, num_threads):
+    #    preproc = PreprocessingPipeline(thread, stage)
+    #    thread_process = Thread(target = preproc.pipeline)
+    #    thread_process.start()
 
